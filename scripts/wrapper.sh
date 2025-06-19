@@ -99,7 +99,7 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/028/858/775/GCF_028858775.2_NH
 cd ../../
 cd genes/bonobo
 #Download the NHGRI_mPanPan1-v2.1_pri genome annotation
-https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/029/289/425/GCF_029289425.2_NHGRI_mPanPan1-v2.0_pri/GCF_029289425.2_NHGRI_mPanPan1-v2.0_pri_genomic.gtf.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/029/289/425/GCF_029289425.2_NHGRI_mPanPan1-v2.0_pri/GCF_029289425.2_NHGRI_mPanPan1-v2.0_pri_genomic.gtf.gz
 cd ../../
 cd genes/gibbon
 #Download the NHGRI_mSymSyn1-v2.1_pri genome annotation
@@ -117,5 +117,15 @@ cd genes/sorangutan
 #Download the NHGRI_mPonAbe1-v2.1_pri genome annotation
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/028/885/655/GCF_028885655.2_NHGRI_mPonAbe1-v2.0_pri/GCF_028885655.2_NHGRI_mPonAbe1-v2.0_pri_genomic.gtf.gz
 cd ../../
+#########################################################################################################################
+#Extract coding exons annotated in the GTF
+for species in human bonobo chimpanzee gorilla borangutan sorangutan gibbon
+do
+echo $species
+gunzip genes/"$species"/*.gtf.gz
+gtf=`ls -1  genes/"$species"/*.gtf|cut -f 3 -d '/'|sed 's/\.gtf//g'`
+#Extract coding exon coordinates from GTF
+python scripts/gtf_to_bed.py genes/"$species"/"$gtf".gtf genes/"$species"/"$gtf".bed
+done
 #########################################################################################################################
 
