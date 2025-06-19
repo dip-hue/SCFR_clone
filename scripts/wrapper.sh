@@ -77,4 +77,16 @@ cat SCFR/"$species"/*.fasta.SCFRs.out > SCFR_all/"$species"_SCFR_all.out
 Rscript scripts/summarize_SCFR_bed_frames_all.R SCFR_all/"$species"_SCFR_all.out
 done
 #########################################################################################################################
+#get GC content of the SCFRs
+for species in human bonobo chimpanzee gorilla borangutan sorangutan gibbon
+do
+echo $species
+for chr in `ls -1 chrs/$species/*.fasta|cut -f 3 -d '/'|sed 's/\.fasta//g'`
+do
+echo $chr
+bedtools nuc -fi chrs/$species/"$chr".fasta -bed SCFR/"$species"/"$chr".fasta.SCFRs.out > GC/"$species"/"$chr".fasta.SCFRs_GC.out
+done
+done
+#########################################################################################################################
+
 
