@@ -88,5 +88,26 @@ bedtools nuc -fi chrs/$species/"$chr".fasta -bed SCFR/"$species"/"$chr".fasta.SC
 done
 done
 #########################################################################################################################
+##Download all the seven primate genome annotation files
+#Download the gene annotation file of T2T-CHM13v2.0 genome
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/009/914/755/GCF_009914755.1_T2T-CHM13v2.0/GCF_009914755.1_T2T-CHM13v2.0_genomic.gtf.gz
 
+#Download the NHGRI_mPanTro3-v2.1_pri genome annotation
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/028/858/775/GCF_028858775.2_NHGRI_mPanTro3-v2.0_pri/GCF_028858775.2_NHGRI_mPanTro3-v2.0_pri_genomic.gtf.gz
+
+#Download the NHGRI_mPanPan1-v2.1_pri genome annotation
+https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/029/289/425/GCF_029289425.2_NHGRI_mPanPan1-v2.0_pri/GCF_029289425.2_NHGRI_mPanPan1-v2.0_pri_genomic.gtf.gz
+
+#Download the NHGRI_mSymSyn1-v2.1_pri genome annotation
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/028/878/055/GCF_028878055.3_NHGRI_mSymSyn1-v2.1_pri/GCF_028878055.3_NHGRI_mSymSyn1-v2.1_pri_genomic.gtf.gz
+
+#Download the NHGRI_mGorGor1-v2.1_pri genome annotation
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/029/281/585/GCF_029281585.2_NHGRI_mGorGor1-v2.1_pri/GCF_029281585.2_NHGRI_mGorGor1-v2.1_pri_genomic.gtf.gz
+
+#Download the NHGRI_mPonPyg2-v2.1_pri genome annotation
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/028/885/625/GCF_028885625.2_NHGRI_mPonPyg2-v2.0_pri/GCF_028885625.2_NHGRI_mPonPyg2-v2.0_pri_genomic.gtf.gz
+
+#Download the NHGRI_mPonAbe1-v2.1_pri genome annotation
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/028/885/655/GCF_028885655.2_NHGRI_mPonAbe1-v2.0_pri/GCF_028885655.2_NHGRI_mPonAbe1-v2.0_pri_genomic.gtf.gz
+#########################################################################################################################
 
