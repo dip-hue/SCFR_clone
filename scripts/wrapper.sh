@@ -80,7 +80,7 @@ done
 for species in human bonobo chimpanzee gorilla borangutan sorangutan gibbon
 do
 echo $species
-cat SCFR/"$species"/*.fasta.SCFRs.out > SCFR_all/"$species"_SCFR_all.out
+cat SCFR/"$species"/*.fasta.SCFRs.out|sort -k1,1 -k2n,2|bedtools intersect -v -a stdin -b SCFR_all/gaps_"$species".bed > SCFR_all/"$species"_SCFR_all.out
 Rscript scripts/summarize_SCFR_bed_frames_all.R SCFR_all/"$species"_SCFR_all.out
 done
 #########################################################################################################################
