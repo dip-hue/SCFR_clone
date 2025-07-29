@@ -153,6 +153,29 @@ gtf=`ls -1  genes/"$species"/*.gtf|cut -f 3 -d '/'|sed 's/\.gtf//g'`
 python scripts/gtf_to_bed.py genes/"$species"/"$gtf".gtf genes/"$species"/"$gtf".bed
 done
 #########################################################################################################################
+#bin the SCFR counts by length and GC content
+for species in human bonobo chimpanzee gorilla borangutan sorangutan gibbon
+do
+echo $species
+cat "$species"_SCFR_GC_all.out|awk '{printf "%s %.2f\n", $13, $5}' |sed 's/ /\t/g'|awk '{
+  if ($1 < 1000)
+    bin1 = int($1 / 100) * 100;
+  else
+    bin1 = int($1 / 1000) * 1000;
+
+  bin2 = sprintf("%.1f", int($2 * 10) / 10);
+
+  count[bin1, bin2]++;
+  range[bin1] = ($1 < 1000) ? 100 : 1000;
+} END {
+  for (key in count) {
+    split(key, bins, SUBSEP);
+    r = range[bins[1]];
+    printf "%d-%d\t%s-%s\t%d\n", bins[1], bins[1]+r-1, bins[2], sprintf("%.1f", bins[2]+0.1), count[key];
+  }
+}' > "$species"_bins.out
+done
+
 #Plot a 2 dimensional histogram of length vs AT content and label the SCFR longer than 10 Kb that overlap coding exons
 for species in human bonobo chimpanzee gorilla borangutan sorangutan gibbon
 do
