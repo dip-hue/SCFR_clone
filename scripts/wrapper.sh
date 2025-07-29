@@ -107,12 +107,9 @@ done
 for species in human bonobo chimpanzee gorilla borangutan sorangutan gibbon
 do
 echo $species
-for chr in `ls -1 chrs/$species/*.fasta|cut -f 3 -d '/'|sed 's/\.fasta//g'`
-do
-echo $chr
-bedtools nuc -fi chrs/$species/"$chr".fasta -bed SCFR/"$species"/"$chr".fasta.SCFRs.out > GC/"$species"/"$chr".fasta.SCFRs_GC.out
-done
-cat GC/"$species"/*.out|awk '$11<1{print $0}' > SCFR_all/"$species"_SCFR_GC_all.out
+cat chrs/$species/*.fasta > tmp."$species".fasta
+bedtools nuc -fi tmp."$species".fasta -bed SCFR_all/"$species"_SCFR_all.out > SCFR_all/"$species"_SCFR_GC_all.out
+rm tmp."$species".fasta
 cat SCFR_all/"$species"_SCFR_GC_all.out|awk '$13>10000{print $0}'|grep -v "^#"|sed 's/:/\t/g'|cut -f 1-13|sort -k1,1 -k2n,2 > SCFR_all/"$species"_long_SCFRs.bed
 done
 #########################################################################################################################
