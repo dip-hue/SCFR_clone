@@ -182,6 +182,8 @@ do
 echo $species
 gtf=`ls -1  genes/"$species"/*.gtf|cut -f 3 -d '/'|sed 's/\.gtf//g'`
 bedtools intersect -a SCFR_all/"$species"_long_SCFRs.bed -b genes/"$species"/"$gtf".bed -wa -wb|cut -f 5,13,17|sort -u > SCFR_all/"$species"_genes_of_interest.txt
-Rscript scripts/plot_2dhist_seq_len_vs_pctAT.R SCFR_all/"$species"_SCFR_GC_all.out SCFR_all/"$species"_genes_of_interest.txt
 done
+cp scripts/combined_2dhist.r SCFR_all
+cd SCFR_all
+Rscript combined_2dhist.r
 #########################################################################################################################
