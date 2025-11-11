@@ -21,7 +21,7 @@ done
 for chr in `cut -f 9 genome_reports/GCA_009914755.4_human.tsv|grep -v "RefSeq"`
 do
 echo $chr
-esearch -db nucleotide -query "$chr" | efetch -format fasta > chrs/human/"$chr".fasta
+esearch -db nucleotide -query "$chr" | efetch -format fasta > "$chr".fasta
 done
 #Download the NHGRI_mPanTro3-v2.1_pri genome
 for chr in `cut -f 9 genome_reports/GCA_028858775.3_chimpanzee.tsv|grep -v "RefSeq"`
