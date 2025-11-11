@@ -1,3 +1,5 @@
+#SCRIPTS
+
 #########################################################################################################################
 #Create the required folders
 for species in human bonobo chimpanzee gorilla borangutan sorangutan gibbon
@@ -15,6 +17,7 @@ done
 
 #########################################################################################################################
 ##Download all the seven primate genome
+
 #Download the T2T-CHM13v2.0 genome
 for chr in `cut -f 9 genome_reports/GCA_009914755.4_human.tsv|grep -v "RefSeq"`
 do
